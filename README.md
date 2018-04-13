@@ -1,8 +1,13 @@
 # Use guide
 
 ```
-$generator = new Betterde\Tree\Generator();
+use Betterde\Tree\Generator;
 
-$tree = $generator->make($collection, 'code', 'parent_code', 'children', '');
+public function index()
+{
+    $generator = new Generator();
+    
+    $tree = $generator->make($collection, 'code', 'parent_code', 'children', '');
+} 
 
 ```
