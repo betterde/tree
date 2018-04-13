@@ -18,7 +18,7 @@ class Node extends Model
      * Node constructor.
      * @param array $attributes
      */
-    public function __construct(array $attributes = [])
+    public function __construct($attributes = [])
     {
         parent::__construct($attributes);
         $this->fill($attributes);

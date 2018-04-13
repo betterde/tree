@@ -2,6 +2,7 @@
 
 namespace Betterde\Tree;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Betterde\Tree\Exceptions\TreeException;
 
@@ -111,6 +112,7 @@ class Generator
      * @author George
      * @param $topvalue
      * @return bool
+     * @throws TreeException
      */
     public function addTopNode($topvalue)
     {
@@ -120,7 +122,7 @@ class Generator
             return true;
         }
         foreach ($nodes as $item) {
-            $node = new Node($item);
+            $node = new Node($this->isArray($item));
             $this->tree->addNode($node);
         }
         return false;
@@ -137,7 +139,7 @@ class Generator
     {
         if ($this->collection->has($item->{$this->primaryKey})) {
             $this->collection->pull($item->{$this->primaryKey})->map(function ($temp) use ($item) {
-                $node = new Node($temp);
+                $node = new Node($this->isArray($temp));
                 $item->addChildren($node, $this->childrenKey);
                 $this->recursion($node);
             });
@@ -163,6 +165,25 @@ class Generator
             return collect($collection);
         }
 
+        throw new TreeException('数据类型错误');
+    }
+
+    /**
+     * Date: 13/04/2018
+     * @author George
+     * @param $item
+     * @return array
+     * @throws TreeException
+     */
+    public function isArray($item)
+    {
+        if (is_array($item)) {
+            return $item;
+        }
+
+        if ($item instanceof Model) {
+            return $item->toArray();
+        }
         throw new TreeException('数据类型错误');
     }
 }
