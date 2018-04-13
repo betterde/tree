@@ -1,0 +1,27 @@
+{
+    "name": "betterde/tree",
+    "description": "Tree generator",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "betterde",
+            "email": "george@betterde.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.6",
+        "illuminate/database": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Betterde\\Tree\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev"
+}
