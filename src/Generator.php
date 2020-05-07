@@ -2,8 +2,8 @@
 
 namespace Betterde\Tree;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Betterde\Tree\Exceptions\TreeException;
 
 /**
@@ -43,15 +43,6 @@ class Generator
     private $primaryKey = 'id';
 
     /**
-     * 定义父键名称
-     *
-     * @var string
-     * Date: 22/03/2018
-     * @author George
-     */
-    private $parentKey = 'parent_id';
-
-    /**
      * 定义子键名称
      *
      * @var string
@@ -73,7 +64,6 @@ class Generator
      * 生成树结构
      *
      * Date: 09/04/2018
-     * @author George
      * @param $collection
      * @param string $primaryKey
      * @param string $parentKey
@@ -81,16 +71,16 @@ class Generator
      * @param string $topvalue
      * @return Collection|mixed
      * @throws TreeException
+     * @author George
      */
-        public function make($collection, string $primaryKey = 'id', string $parentKey = 'parent_id', string $childrenKey = 'children', string $topvalue = "")
+    public function make($collection, string $primaryKey = 'id', string $parentKey = 'parent_id', string $childrenKey = 'children', string $topvalue = "")
     {
         $collection = $this->transform($collection);
 
         $this->primaryKey = $primaryKey;
-        $this->parentKey = $parentKey;
         $this->childrenKey = $childrenKey;
 
-        $this->collection = $collection->groupBy($this->parentKey);
+        $this->collection = $collection->groupBy($parentKey);
 
         if ($this->addTopNode($topvalue)) {
             return $collection;

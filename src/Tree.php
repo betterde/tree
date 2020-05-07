@@ -3,7 +3,6 @@
 namespace Betterde\Tree;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 
 class Tree extends Model
 {
