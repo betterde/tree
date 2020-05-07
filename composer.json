@@ -1,8 +1,10 @@
 {
     "name": "betterde/tree",
     "description": "Tree generator",
+    "keywords": ["Tree", "Node", "generator"],
     "type": "library",
     "license": "MIT",
+    "version": "1.0.4",
     "authors": [
         {
             "name": "betterde",
