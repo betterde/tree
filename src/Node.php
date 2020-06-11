@@ -4,6 +4,8 @@ namespace Betterde\Tree;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Arr;
+
 /**
  * Date: 13/04/2018
  * @author George
@@ -31,10 +33,11 @@ class Node extends Model
      * @author George
      * @param Node $node
      * @param string $childrenKey
+     * 11/06/2020 修改 array_has 函数为 Arr::has
      */
     public function addChildren(Node $node, string $childrenKey = 'children')
     {
-        if (array_has($this->attributes, $childrenKey)) {
+        if (Arr::has($this->attributes, $childrenKey)) {
             $this->attributes[$childrenKey]->push($node);
         } else {
             $this->attributes[$childrenKey] = collect([]);
