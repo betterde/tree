@@ -4,7 +4,7 @@
     "keywords": ["Tree", "Node", "generator"],
     "type": "library",
     "license": "MIT",
-    "version": "1.0.6",
+    "version": "v1.0.7",
     "authors": [
         {
             "name": "betterde",
